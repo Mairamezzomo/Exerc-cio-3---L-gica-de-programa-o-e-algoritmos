@@ -1,0 +1,50 @@
+print("Bem-vindo ao sistema de cobrança da copiadora!")
+
+def calc_num_paginas():
+    while True:
+        num = int(input("Digite o número de páginas: "))
+        if num < 20:
+            return num
+        elif 20 <= num < 200:
+            return num * 0.15
+        elif 200 <= num < 2000:
+            return num * 0.20
+        elif 2000 <= num < 20000:
+            return num * 0.25
+        else:
+            print("Número de páginas inválido. Tente novamente.")
+
+def escolha_servico():
+    while True:
+        servico = input('Digite o serviço desejado (DIG/ICO/IBO/FOT): ')
+        if servico.upper() in ["DIG", "ICO", "IBO", "FOT"]:
+            return servico.upper()
+        else:
+            print("Opção inválida. Tente novamente.")
+
+def adicional():
+    while True:
+        adicional = input("Digite o serviço adicional desejado: \n\n 1 - Encadernação Simples \n 2 - Encadernação Capa Dura \n 0 - Não quero mais nada. \n\n  ")
+        if adicional == '1':
+            return 15.00
+        elif adicional == '2':
+            return 40.00
+        elif adicional == '0':
+            return 0
+        else:
+            print("Opção inválida. Tente novamente.")
+
+def main():
+    servico = escolha_servico()
+    num_paginas = calc_num_paginas()
+    valor_extra = adicional()
+    print('O valor da cópia é: R${:.2f}'.format(num_paginas))
+    print('O valor adicional é: R${:.2f}'.format(valor_extra))
+    total = num_paginas + valor_extra
+    print("Total a pagar pelo serviço {} é: R${:.2f}".format(servico, total))
+
+# Execução do programa
+try:
+    main()
+except Exception as e:
+    print("Ocorreu um erro:", str(e))
